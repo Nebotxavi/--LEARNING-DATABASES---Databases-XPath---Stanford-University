@@ -1,0 +1,19 @@
+#1  Return the area of Mongolia. 
+
+doc("countries.xml")//country[@name = 'Mongolia']/data(@area)
+
+#2  Return the names of all cities that have the same name as the country in which they are located. 
+
+doc("countries.xml")//city[name = ../data(@name)]/name
+
+OR
+
+doc("countries.xml")//city/name[. = ../../data(@name)]
+
+#3  Return the average population of Russian-speaking countries. 
+
+avg(doc("countries.xml")//country[language = 'Russian']/data(@population))
+
+#4  Return the names of all countries that have at least three cities with population greater than 3 million. 
+
+doc("countries.xml")//country[count(city[population > 3000000]) > 2]/data(@name)
